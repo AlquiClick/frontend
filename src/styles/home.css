@@ -1,0 +1,5 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajusta el ancho mínimo */
+    gap: 1rem; /* Espacio entre las tarjetas */
+}

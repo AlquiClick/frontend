@@ -1,65 +1,81 @@
-import React from 'react';
-import { Formik } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Field, ErrorMessage, validateYupSchema } from "formik"
+import * as Yup from "yup"
+import '../styles/login.css';
 
 const LoginForm = () => {
+    const onLoginUser = async (values) => {
 
-  const ValidationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email('Invalid email format')
-      .required('Email is required'),
-    password: Yup.string()
-      .required('Password is required')
-      .min(6, 'Password must be at least 6 characters')
-      .max(20, 'Password is too long'),
-  });
+        const credentials = btoa(`${values.username}:${values.password}`);
+        const response = await fetch('http://127.0.0.1:5000/login', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Basic ${credentials}`,
+            },
+            body: JSON.stringify({})
+        });
+    
+        if(!response.ok) {
+            console.log("Error en la solicitud");
+        }
 
-  const handleLogin = async (values) => {
-    console.log("estos datos vanpala api:", values);
-  };
+        const data = await response.json();
+        localStorage.setItem('token', JSON.stringify(data.token))
+    }    
 
-  return (
-    <div className="login-container">
-      <h2 className="login-title">Login</h2>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validationSchema={ValidationSchema}
-        onSubmit={handleLogin}
-      >
-        {({ values, handleChange, handleBlur, handleSubmit, isValid, touched, errors }) => (
-          <form onSubmit={handleSubmit} className="login-form">
-            <div className="input-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-              />
-              {errors.email && touched.email && <div className="error-message">{errors.email}</div>}
-            </div>
+    const validationSchema = Yup.object().shape({
+        password:Yup.string()
+        .required('Pone el contraseño simio 🐒')
+        .min(3, 'contraseña mas largo'),
+        username:Yup.string()
+        .min(5, 'Nombre mas largo')
+        .max(25, 'Nombre mas corto')
+        .required('Pone el nombre mono 🐒')
+    })
 
-            <div className="input-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-              />
-              {errors.password && touched.password && <div className="error-message">{errors.password}</div>}
-            </div>
-
-            <button type="submit" className="login-button" disabled={!isValid}>
-              Sign In
-            </button>
-          </form>
-        )}
-      </Formik>
-    </div>
-  );
+    return (
+        <Formik
+            initialValues={{password: '', username: ''}}
+            validationSchema={validationSchema}
+        >
+            {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                isValid
+            }) => (
+                <form>
+                    <input
+                        type="text"
+                        name="username"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.username}
+                    />
+                    {errors.username && touched.username && errors.username}
+                    <input
+                        type="password"
+                        name="password"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.password}
+                    />
+                    {errors.password && touched.password && errors.password}
+                    <button
+                        type="button"
+                        onClick={() => onLoginUser(values)}
+                        disabled={
+                            values.username === '' || values.password === '' || !isValid
+                        }
+                    >
+                        Sig In
+                    </button>
+                </form>
+            )}
+        </Formik>
+    )
 };
 
 export default LoginForm;
