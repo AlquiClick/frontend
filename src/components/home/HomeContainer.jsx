@@ -9,7 +9,7 @@ const HomeContainer = () => {
     const [properties, setProperties] = useState([]);
     const [search, setSearch] = useState('');
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTczMDU3Njg4NiwianRpIjoiNjJhNDBkNjgtNmUxOS00OWI0LThjYmQtYzE0Mjk5MjVmNGNmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImdlcmNobyIsIm5iZiI6MTczMDU3Njg4NiwiY3NyZiI6IjRmZTAxMjY1LTg3MmYtNDJhZi04Mzk3LWY2YTM0NjY2ZjA2OCIsImV4cCI6MTczNjU3Njg4NiwiaXNfYWRtaW4iOnRydWV9.RPEYfFHACk1uLgteRGI4v9QBD-0Ham5qfyPzj4cOv2E';
+    const token = JSON.parse(localStorage.getItem('token'));
     const getProperties = async (values) => {
         const response = await fetch('http://127.0.0.1:5000/publications', {
             method: "GET",
