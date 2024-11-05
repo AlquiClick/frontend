@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import HeaderContainer from '../header/HeaderContainer';
-import FooterContainer from '../footer/FooterContainer';
 import '../../styles/home.css';
 
 const HomeContainer = () => {
@@ -51,8 +50,7 @@ const HomeContainer = () => {
 
     return (
         <>
-            <HeaderContainer />
-            <div style={{ marginTop: '20%', width: '100%'}}>
+            <div style={{width: '100%'}}>
                 <input
                     type="text"
                     placeholder="Buscar por título"
@@ -81,8 +79,6 @@ const HomeContainer = () => {
                     ))}
                 </div>
             </div>
-
-            <FooterContainer />
         </>
     );
 };

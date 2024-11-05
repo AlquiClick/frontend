@@ -1,12 +1,90 @@
-.home-container {
-    position: 'fixed';
+/* header.css */
+.headerContainer {
+    position: fixed;
     top: 0;
-    width: '100%',;
-    background: '#3B82F6';
-    textAlign: 'left';
-    boxShadow: '0px 2px 5px rgba(0,0,0,0.1)';
+    width: 100%;
+    background: #3B82F6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px; /* Ajusta el tamaño según el logo */
+    height: 40px;
+    margin-right: 10px;
 }
 
 h2 {
-    margin-left: 3%;
+    margin: 0;
+    font-size: 24px;
+}
+
+.menu-section {
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-button {
+    background: none;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #ffffff;
+    color: #333;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+}
+
+.login-link {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.login-link:hover {
+    background: rgba(255, 255, 255, 0.2);
 }

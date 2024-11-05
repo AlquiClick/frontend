@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HeaderContainer from './components/header/HeaderContainer';
 import LoginForm from './components/LoginForm';
 import CreateUserForm from './components/Users/CreateUserForm';
 import UpdateUserForm from './components/Users/UpdateUserForm';
@@ -16,6 +17,7 @@ function App() {
   return (
     <Router>
       <div className="app-container">
+        <HeaderContainer />
         <Routes>
           <Route path="/" element={<HomeContainer />} />
           <Route path="/login" element={<LoginForm />} />
