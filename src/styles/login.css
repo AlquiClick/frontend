@@ -82,9 +82,12 @@ body {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 400px;
+    width: 50%;
+    height: 40%;
     text-align: center;
     margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 1%;
 }
 
 .create-user-title {
