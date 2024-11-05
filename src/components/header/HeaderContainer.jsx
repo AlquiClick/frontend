@@ -5,6 +5,11 @@ const HeaderContainer = () => {
     const isLoggedIn = JSON.parse(localStorage.getItem('token')) ? true : false;
     const username = localStorage.getItem('username');
 
+    const handleLogout = () => {
+        localStorage.clear();
+        window.location.href = '/';
+    };
+
     return (
         <header className="headerContainer">
             <div className="logo-section">
@@ -19,7 +24,7 @@ const HeaderContainer = () => {
                             <div className="dropdown-content">
                                 <a href="/perfil">Perfil</a>
                                 <a href="/alquileres">Mis Alquileres</a>
-                                <a href="/cerrar-sesion">Cerrar Sesión</a>
+                                <button onClick={handleLogout}>Cerrar sesión</button>
                             </div>
                         </div>
                     </div>
