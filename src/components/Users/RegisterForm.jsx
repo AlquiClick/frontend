@@ -1,9 +1,8 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import HeaderContainer from '../header/HeaderContainer';
 
-const CreateUserForm = () => {
+const RegisterForm = () => {
 
   const ValidationSchema = Yup.object().shape({
     username: Yup.string()
@@ -25,7 +24,9 @@ const CreateUserForm = () => {
       .max(30, 'Last name is too long'),
     date_of_birth: Yup.date()
       .required('Date of birth is required')
-      .typeError('Invalid date format (use YYYY-MM-DD)')
+      .typeError('Invalid date format (use YYYY-MM-DD)'),
+    role: Yup.string()
+      .required('Roles is required'),
   });
 
   const handleRegister = async (values, { resetForm }) => {
@@ -36,6 +37,7 @@ const CreateUserForm = () => {
       first_name: values.first_name,
       last_name: values.last_name,
       date_of_birth: values.date_of_birth,
+      role: role,
     };
 
     try {
@@ -65,7 +67,6 @@ const CreateUserForm = () => {
 
   return (
     <div style={{ width: '100vw', overflowX: 'hidden' }}>
-      <HeaderContainer />
       <div className="create-user-container">
         <h2 className="create-user-title">Create a New User</h2>
         <Formik
@@ -76,6 +77,7 @@ const CreateUserForm = () => {
             first_name: '',
             last_name: '',
             date_of_birth: '',
+            role: '',
           }}
           validationSchema={ValidationSchema}
           onSubmit={handleRegister}
@@ -162,6 +164,21 @@ const CreateUserForm = () => {
                 {errors.date_of_birth && touched.date_of_birth && <div className="error-message">{errors.date_of_birth}</div>}
               </div>
 
+              <div className="input-group">
+                <label htmlFor="role">Role</label>
+                <select
+                  name="role"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.role}
+                >
+                <option value="" label="Select role" />
+                <option value="owner" label="Owner" />
+                <option value="renter" label="Renter" />
+                </select>
+                {errors.role && touched.role && <div className="error-message">{errors.role}</div>}
+              </div>
+
               <button
                 type="submit"
                 disabled={!isValid || !values.username || !values.password}
@@ -172,9 +189,10 @@ const CreateUserForm = () => {
             </form>
           )}
         </Formik>
+        <a href='/login'>Have account? Log In</a>
       </div>
     </div>
   );
 };
 
-export default CreateUserForm;
+export default RegisterForm;

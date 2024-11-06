@@ -35,47 +35,59 @@ const LoginForm = () => {
     })
 
     return (
-        <Formik
-            initialValues={{password: '', username: ''}}
-            validationSchema={validationSchema}
-        >
-            {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                isValid
-            }) => (
-                <form>
-                    <input
-                        type="text"
-                        name="username"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.username}
-                    />
-                    {errors.username && touched.username && errors.username}
-                    <input
-                        type="password"
-                        name="password"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.password}
-                    />
-                    {errors.password && touched.password && errors.password}
-                    <button
-                        type="button"
-                        onClick={() => onLoginUser(values)}
-                        disabled={
-                            values.username === '' || values.password === '' || !isValid
-                        }
-                    >
-                        Sig In
-                    </button>
-                </form>
-            )}
-        </Formik>
+        <div style={{ width: '100vw', overflowX: 'hidden' }}>
+            <div className="create-user-container">
+            <h2 className="create-user-title">Login</h2>
+                <Formik
+                    initialValues={{password: '', username: ''}}
+                    validationSchema={validationSchema}
+                >
+                    {({
+                        values,
+                        errors,
+                        touched,
+                        handleChange,
+                        handleBlur,
+                        isValid
+                    }) => (
+                        <form>
+                            <div className="input-group">
+                                <label htmlFor="username">Username</label>
+                                <input
+                                    type="text"
+                                    name="username"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.username}
+                                />
+                                {errors.username && touched.username && errors.username}
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="username">Password</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.password}
+                                />
+                                {errors.password && touched.password && errors.password}
+                            </div>
+                            <button
+                                className="create-user-button"
+                                type="button"
+                                onClick={() => onLoginUser(values)}
+                                disabled={
+                                    values.username === '' || values.password === '' || !isValid
+                                }
+                            >
+                                Sig In
+                            </button>
+                        </form>
+                    )}
+                </Formik>
+            </div>
+        </div>
     )
 };
 
