@@ -86,6 +86,7 @@ const LoginForm = () => {
                         </form>
                     )}
                 </Formik>
+                <a href="/register">Don't have account? Register</a>
             </div>
         </div>
     )
