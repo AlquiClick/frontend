@@ -37,7 +37,7 @@ const RegisterForm = () => {
       first_name: values.first_name,
       last_name: values.last_name,
       date_of_birth: values.date_of_birth,
-      role: role,
+      role: values.role,
     };
 
     try {
