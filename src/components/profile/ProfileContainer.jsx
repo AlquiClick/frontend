@@ -4,6 +4,7 @@ import DeleteForm from '../users/DeleteForm';
 import { Fieldset } from 'primereact/fieldset';
 import '../../styles/profile.css';
 
+
 const ProfileContainer = ({ username }) => {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
 
