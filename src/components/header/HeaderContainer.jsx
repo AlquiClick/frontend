@@ -22,8 +22,8 @@ const HeaderContainer = () => {
                         <div className="dropdown">
                             <button className="dropdown-button">Hola, {username}</button>
                             <div className="dropdown-content">
-                                <a href="/perfil">Perfil</a>
-                                <a href="/alquileres">Mis Alquileres</a>
+                                <a href="/profile">Perfil</a>
+                                <a href="/property">Mis Alquileres</a>
                                 <button onClick={handleLogout}>Cerrar sesión</button>
                             </div>
                         </div>

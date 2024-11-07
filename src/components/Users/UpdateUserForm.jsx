@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-const UpdateUserForm = ({ user }) => {
+const UpdateUserForm = ({ onClose }) => {
 
   const ValidationSchema = Yup.object().shape({
     username: Yup.string()
@@ -15,9 +15,7 @@ const UpdateUserForm = ({ user }) => {
     password: Yup.string()
       .min(6, 'Password must be at least 6 characters')
       .max(20, 'Password is too long')
-      .nullable(), //aca sacamos el nuleable despues
-    role: Yup.string()
-      .required('Role is required')
+      .nullable(),
   });
 
   const handleUpdate = async (values) => {
@@ -34,8 +32,6 @@ const UpdateUserForm = ({ user }) => {
         //   email: user?.email || '',
           email: '',
           password: '',
-        //   role: user?.role || '',
-          role: '',
         }}
         validationSchema={ValidationSchema}
         onSubmit={handleUpdate}
@@ -79,28 +75,13 @@ const UpdateUserForm = ({ user }) => {
               />
               {errors.password && touched.password && <div className="error-message">{errors.password}</div>}
             </div>
-
-            <div className="input-group">
-              <label htmlFor="role">Role</label>
-              <select
-                name="role"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.role}
-              >
-                <option value="" label="Select role" />
-                <option value="admin" label="Admin" />
-                <option value="user" label="User" />
-              </select>
-              {errors.role && touched.role && <div className="error-message">{errors.role}</div>}
-            </div>
-
             <button type="submit" className="update-user-button" disabled={!isValid}>
               Update User
             </button>
           </form>
         )}
       </Formik>
+      <button onClick={onClose}>Cerrar</button>
     </div>
   );
 };
