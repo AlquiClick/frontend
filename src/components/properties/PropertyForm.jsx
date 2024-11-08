@@ -103,7 +103,6 @@ const PropertyForm = ({ showDialog, setShowDialog, onSave, property, isEditing }
                     name="rooms"
                     value={formData.rooms}
                     onValueChange={(e) => handleNumberChange('rooms', e.value)}
-                    integeronly
                 />
             </div>
 
@@ -114,7 +113,6 @@ const PropertyForm = ({ showDialog, setShowDialog, onSave, property, isEditing }
                     name="bathrooms"
                     value={formData.bathrooms}
                     onValueChange={(e) => handleNumberChange('bathrooms', e.value)}
-                    integeronly
                 />
             </div>
 
@@ -125,7 +123,6 @@ const PropertyForm = ({ showDialog, setShowDialog, onSave, property, isEditing }
                     name="garage_capacity"
                     value={formData.garage_capacity}
                     onValueChange={(e) => handleNumberChange('garage_capacity', e.value)}
-                    integeronly
                 />
             </div>
 
@@ -136,18 +133,17 @@ const PropertyForm = ({ showDialog, setShowDialog, onSave, property, isEditing }
                     name="year_built"
                     value={formData.year_built}
                     onValueChange={(e) => handleNumberChange('year_built', e.value)}
-                    integeronly
                 />
             </div>
 
             <div className="field-checkbox">
+                <label htmlFor="active">Activo</label>
                 <Checkbox
                     inputId="active"
                     name="active"
                     checked={formData.active}
-                    onChange={(e) => handleChange({ target: { name: 'active', value: e.checked, type: 'checkbox' } })}
+                    onChange={(e) => setFormData({ ...formData, active: e.checked })}
                 />
-                <label htmlFor="active">Activo</label>
             </div>
 
             <div className="field">
