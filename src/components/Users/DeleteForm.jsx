@@ -16,6 +16,7 @@ const DeleteForm = ({ username }) => {
 
     const handleDeleteAccount = async () => {
         let user_id = localStorage.getItem('user_id') ?? '';
+        const token = JSON.parse(localStorage.getItem('token'));
 
         if (!isDisabled) {
             const bodyUpdateUser = {
@@ -27,7 +28,8 @@ const DeleteForm = ({ username }) => {
             const response = await fetch('http://127.0.0.1:5000/user-delete', {
                 method: 'PUT',
                 headers: {
-                'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(bodyUpdateUser),
             });
