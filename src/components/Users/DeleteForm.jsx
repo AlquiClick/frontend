@@ -14,8 +14,38 @@ const DeleteForm = ({ username }) => {
         setIsDisabled(value !== `eliminar ${username}`);
     };
 
-    const handleDeleteAccount = () => {
+    const handleDeleteAccount = async () => {
+        let user_id = localStorage.getItem('user_id') ?? '';
+
         if (!isDisabled) {
+            const bodyUpdateUser = {
+                user_id: user_id,
+              };
+
+
+            try {
+            const response = await fetch('http://127.0.0.1:5000/user-delete', {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(bodyUpdateUser),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('User delete successfully:', data.message);
+                alert(data.message);
+            } else {
+                const errorData = await response.json();
+                console.error('Error delete user:', errorData.message);
+                alert(`Error: ${errorData.message}`);
+            }
+            } catch (error) {
+            console.error('Network error:', error);
+            alert('A network error occurred. Please try again.');
+            }
+
             // Lógica para eliminar la cuenta
             alert("Cuenta eliminada");
         }
