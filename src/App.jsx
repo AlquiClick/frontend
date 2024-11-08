@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/users/RegisterForm';
 import HomeContainer from './components/home/HomeContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
+import PropertyContainer from './components/properties/PropertyContainer';
 import './styles/login.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/profile" element={<ProfileContainer />} />
+          <Route path="/property" element={<PropertyContainer />} />
         </Routes>
       </div>
     </Router>
