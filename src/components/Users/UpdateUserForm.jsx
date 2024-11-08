@@ -20,6 +20,7 @@ const UpdateUserForm = ({ onClose }) => {
 
   const handleUpdate = async (values) => {
     let user_id = localStorage.getItem('user_id') ?? '';
+    const token = JSON.parse(localStorage.getItem('token'));
 
     const bodyUpdateUser = {
       username: values.username,
@@ -34,6 +35,7 @@ const UpdateUserForm = ({ onClose }) => {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(bodyUpdateUser),
       });
