@@ -19,7 +19,39 @@ const UpdateUserForm = ({ onClose }) => {
   });
 
   const handleUpdate = async (values) => {
-    console.log('valores para actualizar:', values);
+    let user_id = localStorage.getItem('user_id') ?? '';
+
+    const bodyUpdateUser = {
+      username: values.username,
+      email: values.email,
+      password: values.password,
+      user_id: user_id,
+    };
+    console.log('valores para actualizar:', bodyUpdateUser);
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/user-update', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bodyUpdateUser),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('User update successfully:', data.message);
+        alert(data.message);
+        // resetForm();
+      } else {
+        const errorData = await response.json();
+        console.error('Error update user:', errorData.message);
+        alert(`Error: ${errorData.message}`);
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      alert('A network error occurred. Please try again.');
+    }
   };
 
   return (
