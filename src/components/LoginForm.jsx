@@ -1,10 +1,12 @@
-import { Formik, Field, ErrorMessage, validateYupSchema } from "formik"
-import * as Yup from "yup"
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 import '../styles/login.css';
 
 const LoginForm = () => {
-    const onLoginUser = async (values) => {
+    const navigate = useNavigate();
 
+    const onLoginUser = async (values) => {
         const credentials = btoa(`${values.username}:${values.password}`);
         const response = await fetch('http://127.0.0.1:5000/login', {
             method: "POST",
@@ -14,34 +16,38 @@ const LoginForm = () => {
             },
             body: JSON.stringify({})
         });
-    
-        if(!response.ok) {
+
+        if (!response.ok) {
             console.log("Error en la solicitud");
+            return;
         }
 
         const data = await response.json();
-        localStorage.setItem('token', JSON.stringify(data.token))
-        localStorage.setItem('username', values.username)
-        localStorage.setItem('user_id', data.user_id)
-    }    
+        localStorage.setItem('token', JSON.stringify(data.token));
+        localStorage.setItem('username', values.username);
+        localStorage.setItem('user_id', data.user_id);
+
+        navigate('/');
+    };
 
     const validationSchema = Yup.object().shape({
-        password:Yup.string()
-        .required('Pone el contraseño simio 🐒')
-        .min(3, 'contraseña mas largo'),
-        username:Yup.string()
-        .min(5, 'Nombre mas largo')
-        .max(25, 'Nombre mas corto')
-        .required('Pone el nombre mono 🐒')
-    })
+        password: Yup.string()
+            .required('Pone el contraseño simio 🐒')
+            .min(3, 'contraseña más larga'),
+        username: Yup.string()
+            .min(5, 'Nombre más largo')
+            .max(25, 'Nombre más corto')
+            .required('Pone el nombre mono 🐒')
+    });
 
     return (
         <div style={{ width: '100vw', overflowX: 'hidden' }}>
             <div className="create-user-container">
-            <h2 className="create-user-title">Login</h2>
+                <h2 className="create-user-title">Login</h2>
                 <Formik
-                    initialValues={{password: '', username: ''}}
+                    initialValues={{ password: '', username: '' }}
                     validationSchema={validationSchema}
+                    onSubmit={(values) => onLoginUser(values)}
                 >
                     {({
                         values,
@@ -49,9 +55,10 @@ const LoginForm = () => {
                         touched,
                         handleChange,
                         handleBlur,
+                        handleSubmit,
                         isValid
                     }) => (
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="input-group">
                                 <label htmlFor="username">Username</label>
                                 <input
@@ -64,7 +71,7 @@ const LoginForm = () => {
                                 {errors.username && touched.username && errors.username}
                             </div>
                             <div className="input-group">
-                                <label htmlFor="username">Password</label>
+                                <label htmlFor="password">Password</label>
                                 <input
                                     type="password"
                                     name="password"
@@ -76,21 +83,20 @@ const LoginForm = () => {
                             </div>
                             <button
                                 className="create-user-button"
-                                type="button"
-                                onClick={() => onLoginUser(values)}
+                                type="submit"
                                 disabled={
                                     values.username === '' || values.password === '' || !isValid
                                 }
                             >
-                                Sig In
+                                Sign In
                             </button>
                         </form>
                     )}
                 </Formik>
-                <a href="/register">Don't have account? Register</a>
+                <a href="/register">Don't have an account? Register</a>
             </div>
         </div>
-    )
+    );
 };
 
 export default LoginForm;
