@@ -1,3 +1,4 @@
+import 'primeicons/primeicons.css';
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -134,21 +135,22 @@ const PropertyContainer = () => {
                     label="Actualizar"
                     icon="pi pi-pencil"
                     className="p-button-warning"
+                    severity="warning"
                     onClick={() => openEditPropertyDialog(rowData)}
-                    style={{ marginRight: '0.5rem' }}
+                    style={{ marginRight: '0.5rem', marginBottom: '1rem', backgroundColor: '#f1c232' }}
                 />
                 {rowData.active ? (
                     <Button
                         label="Desactivar"
                         icon="pi pi-times"
-                        className="p-button-danger"
+                        style={{ marginRight: '0.5rem', marginBottom: '1rem', backgroundColor: '#e06666' }}
                         onClick={() => handleDeactivate(rowData.id)}
                     />
                 ) : (
                     <Button
                         label="Activar"
                         icon="pi pi-check"
-                        className="p-button-success"
+                        style={{ marginRight: '0.5rem', marginBottom: '1rem', backgroundColor: '#93c47d' }}
                         onClick={() => handleActivate(rowData.id)}
                     />
                 )}

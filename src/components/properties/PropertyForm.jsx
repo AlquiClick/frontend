@@ -41,10 +41,10 @@ const PropertyForm = ({ showDialog, setShowDialog, onSave, property, isEditing }
     }, [isEditing, property]);
 
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
+        const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: type === 'checkbox' ? checked : value,
+            [name]: value,
         }));
     };
 
