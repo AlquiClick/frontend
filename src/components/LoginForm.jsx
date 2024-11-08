@@ -22,6 +22,7 @@ const LoginForm = () => {
         const data = await response.json();
         localStorage.setItem('token', JSON.stringify(data.token))
         localStorage.setItem('username', values.username)
+        localStorage.setItem('user_id', data.user_id)
     }    
 
     const validationSchema = Yup.object().shape({
