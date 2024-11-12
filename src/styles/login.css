@@ -1,208 +1,165 @@
+/* Estilos generales */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    display: contents;
+    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.app-container {
+.login-page-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
 .login-container {
     background-color: #ffffff;
     padding: 2rem;
+    padding-top: 120px; /* Espacio para el blue-banner */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    z-index: 1; /* Asegura que el contenido esté sobre el blue-banner */
+}
+
+.blue-banner {
+    background-color: #cfd8ff; /* Mismo color que `login-image-placeholder` */
+    height: 30%; /* Ajusta según la cantidad que deseas cubrir */
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Asegura que el blue-banner esté detrás del contenido */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.login-image-placeholder {
+    height: 80px;
+    width: 80px;
+    background-color: #cfd8ff;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: -40px; /* Posiciona el ícono en el centro del banner */
+    position: relative;
+    z-index: 1;
 }
 
 .login-title {
     font-size: 24px;
-    color: #333;
-    margin-bottom: 1.5rem;
+    color: #1d1d1d;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: left;
 }
 
-.login-form {
-    display: flex;
-    flex-direction: column;
+.title-underline {
+    width: 90%;
+    height: 2px;
+    background-color: #000;
+    margin: 0.5rem 0 1.5rem 0;
+}
+
+.input-group input,
+.p-password input.p-inputtext {
+    width: 100%;
+    padding: 0.75rem;
+    padding-right: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.p-password {
+    position: relative;
+    width: 100%;
+}
+
+.p-password input.p-inputtext {
+    width: 100%;
+}
+
+.p-password .p-password-toggle-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+    z-index: 10;
 }
 
 .input-group {
     margin-bottom: 1rem;
 }
 
-.input-group label {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    color: white;
-    background-color: #333;
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 0.25rem;
 }
 
 .login-button {
     padding: 0.75rem;
-    background-color: #555;
+    background-color: #333;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 1rem;
+    width: 100%;
 }
 
 .login-button:hover {
-    background-color: #333;
+    background-color: #555;
 }
 
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-/* createeee */
-.create-user-container {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    height: 40%;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 5%;
-    margin-bottom: 1%;
-}
-
-.create-user-title {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 1.5rem;
-}
-
-.create-user-form {
+.login-links {
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
-.input-group {
-    margin-bottom: 1rem;
-}
-
-.input-group label {
+.login-links a {
+    color: #1d4ed8;
     font-size: 14px;
-    color: #555;
+    text-decoration: none;
     margin-bottom: 0.5rem;
-    display: block;
 }
 
-.input-group input,
-.input-group select {
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    color: white;
-    background-color: #333;
+.login-links a:hover {
+    text-decoration: underline;
 }
 
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 0.25rem;
+/* Responsividad */
+@media (max-width: 768px) {
+    .login-container {
+        width: 80%;
+    }
 }
 
-.create-user-button {
-    padding: 0.75rem;
-    background-color: #555;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.create-user-button:hover {
-    background-color: #333;
-}
-
-/* updateee */
-.update-user-container {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.update-user-title {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 1.5rem;
-}
-
-.update-user-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.input-group {
-    margin-bottom: 1rem;
-}
-
-.input-group label {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.input-group input,
-.input-group select {
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    color: white;
-    background-color: #333;
-}
-
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 0.25rem;
-}
-
-.update-user-button {
-    padding: 0.75rem;
-    background-color: #555;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.update-user-button:hover {
-    background-color: #333;
+@media (max-width: 480px) {
+    .login-container {
+        padding: 1rem;
+    }
 }

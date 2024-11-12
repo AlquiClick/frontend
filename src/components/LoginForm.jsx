@@ -1,6 +1,9 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { InputText } from "primereact/inputtext";
+import { Password } from "primereact/password";
+import { Button } from "primereact/button";
 import '../styles/login.css';
 
 const LoginForm = () => {
@@ -41,9 +44,14 @@ const LoginForm = () => {
     });
 
     return (
-        <div style={{ width: '100vw', overflowX: 'hidden' }}>
-            <div className="create-user-container">
-                <h2 className="create-user-title">Login</h2>
+        <div className="login-page-container">
+            <div className="login-container">
+                <div className="blue-banner"></div>
+                <div className="login-image-placeholder">
+                    <img src="your-image-url" alt="Placeholder" />
+                </div>
+                <h2 className="login-title">BIENVENIDO!</h2>
+                <div className="title-underline"></div>
                 <Formik
                     initialValues={{ password: '', username: '' }}
                     validationSchema={validationSchema}
@@ -60,40 +68,43 @@ const LoginForm = () => {
                     }) => (
                         <form onSubmit={handleSubmit}>
                             <div className="input-group">
-                                <label htmlFor="username">Username</label>
-                                <input
+                                <InputText
                                     type="text"
                                     name="username"
+                                    placeholder="Email Address"
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.username}
+                                    className={`p-inputtext ${errors.username && touched.username ? 'p-invalid' : ''}`}
                                 />
-                                {errors.username && touched.username && errors.username}
+                                {errors.username && touched.username && <div className="error-message">{errors.username}</div>}
                             </div>
-                            <div className="input-group">
-                                <label htmlFor="password">Password</label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.password}
-                                />
-                                {errors.password && touched.password && errors.password}
-                            </div>
-                            <button
-                                className="create-user-button"
+                            {/* <div className="input-group"> */}
+                            <Password
+                                name="password"
+                                placeholder="Password"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.password}
+                                toggleMask // Activa el botón para mostrar/ocultar contraseña
+                                feedback={false} // Oculta el panel de sugerencias de seguridad
+                                className="custom-password-input"
+                            />
+                                {errors.password && touched.password && <div className="error-message">{errors.password}</div>}
+                            {/* </div> */}
+                            <Button
+                                label="Sign In"
                                 type="submit"
-                                disabled={
-                                    values.username === '' || values.password === '' || !isValid
-                                }
-                            >
-                                Sign In
-                            </button>
+                                className="login-button"
+                                disabled={values.username === '' || values.password === '' || !isValid}
+                            />
                         </form>
                     )}
                 </Formik>
-                <a href="/register">Don't have an account? Register</a>
+                <div className="login-links">
+                    <a href="/forgot-password">Forgot password?</a>
+                    <a href="/register">Don't have an account? Register here</a>
+                </div>
             </div>
         </div>
     );
