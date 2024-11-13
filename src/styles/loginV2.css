@@ -1,12 +1,12 @@
 /* Estilos generales */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .login-page-container {
@@ -16,6 +16,8 @@ body {
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
+    padding: 1rem;
+    background-color: #ffffff;
 }
 
 .login-container {
@@ -23,22 +25,25 @@ body {
     padding: 2rem;
     padding-top: 20%;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 100%;
+    width: 100%;
+    max-width: 400px;
     text-align: left;
-    height: 100%;
+    height: auto;
     position: relative;
     overflow: hidden;
     z-index: 1;
+    box-shadow: none;
 }
 
 .blue-banner {
-    background-color: #D8E7FD;
+    background-color: #ffffff;
+    background-image: url('../imagenes/logo.png');
+    background-size: contain;
+    background-position: center 30%;
+    background-repeat: no-repeat;
     height: 28%;
     width: 100%;
     position: absolute;
-    margin-bottom: 20%;
     top: 0;
     left: 0;
     z-index: 0;
