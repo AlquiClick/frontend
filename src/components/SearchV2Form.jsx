@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from 'primereact/card';
-import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Tag } from 'primereact/tag';
-import { Carousel } from 'primereact/carousel';
-import { FaBookmark } from 'react-icons/fa';
 import '../styles/search.css';
 
 const SearchContainer = () => {
@@ -38,66 +35,40 @@ const SearchContainer = () => {
         property.title.toLowerCase().includes(search.toLowerCase())
     );
 
-    const carouselItemTemplate = (property) => (
-        <div style={{ padding: '1rem', width: '250px' }}>
-            <Card
-                header={<img alt="Property" src={property.image?.url || "https://primefaces.org/cdn/primereact/images/usercard.png"} style={{ width: '100%', borderRadius: '5px' }} />}
-                style={{
-                    backgroundColor: '#E8E9F1',
-                    color: '#333',
-                    borderRadius: '10px',
-                    padding: '1rem',
-                    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)'
-                }}
-            >
-                <FaBookmark style={{ position: 'absolute', top: '10px', right: '10px', color: property.isBookmarked ? '#4CAF50' : '#CCC', cursor: 'pointer' }} />
-
-                <div style={{ paddingTop: '1rem' }}>
-                    <h5 style={{ fontWeight: 'bold' }}>{property.title}</h5>
-                    <p style={{ color: '#555', marginBottom: '1rem' }}>
-                        {property.description || 'Descripción no disponible'}
-                    </p>
-                    <Tag value={`$${property.price_shown}`} style={{ backgroundColor: '#060A74', color: '#FFF' }} />
-                </div>
-            </Card>
-        </div>
-    );
-
     return (
-        <div style={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f0f0f0' }}>
+        <div style={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f0f0f0', padding: '2rem' }}>
             <div style={{
                 width: '90%',
-                maxWidth: '50%',
-                maxHeight: '70%',
+                maxWidth: '600px',
+                maxHeight: '85vh',
                 backgroundColor: '#ffffff',
                 borderRadius: '10px',
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
                 overflowY: 'auto',
-                padding: '1.5rem',
-                margin: 'auto'
+                padding: '1.5rem'
             }}>
-                <Carousel
-                    value={filteredProperties.slice(0, 3)}
-                    itemTemplate={carouselItemTemplate}
-                    numVisible={1}
-                    numScroll={1}
-                    style={{ marginBottom: '2rem' }}
-                />
+                <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>Mis propiedades</h2>
 
-                <div className="search-bar" style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
-                    <InputText
-                        type="text"
-                        placeholder="Buscar por título"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        style={{
-                            width: '100%',
-                            padding: '0.75rem',
-                            borderRadius: '50px',
-                            marginRight: '10px'
-                        }}
-                    />
-                    <Button icon="pi pi-search" className="p-button-rounded" />
+                <div style={{ width: '100%', marginBottom: '1.5rem' }}>
+                    <div className="icon-field" style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+                        <span className="p-input-icon-left" style={{ position: 'absolute', left: '10%', color: '#888' }}>
+                            <i className="pi pi-search" />
+                        </span>
+                        <InputText
+                            type="text"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            style={{
+                                width: '90%',
+                                paddingLeft: '2.5rem',
+                                marginLeft: '0.7rem',
+                                padding: '0.85rem',
+                                borderRadius: '25px',
+                                border: '1px solid #000000',
+                                backgroundColor: '#ffffff'
+                            }}
+                        />
+                    </div>
                 </div>
 
                 <div
@@ -105,8 +76,7 @@ const SearchContainer = () => {
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '1rem',
-                        maxHeight: '400px',
+                        gap: '1.5rem',
                         overflowY: 'auto',
                         paddingRight: '10px'
                     }}
@@ -114,38 +84,60 @@ const SearchContainer = () => {
                     {filteredProperties.map((property) => (
                         <Card
                             key={property.id}
-                            header={<img alt="Property" src={property.image?.url || "https://primefaces.org/cdn/primereact/images/usercard.png"} style={{ width: '100%', borderRadius: '5px' }} />}
                             style={{
-                                backgroundColor: '#E8E9F1',
                                 color: '#333',
                                 borderRadius: '10px',
-                                padding: '1rem',
-                                position: 'relative',
+                                padding: '0',
                                 boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-                                margin: '0 1rem'
+                                margin: '0 1rem',
+                                overflow: 'hidden',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: 'auto'
                             }}
                         >
-                            <FaBookmark style={{ position: 'absolute', top: '10px', right: '10px', color: property.isBookmarked ? '#4CAF50' : '#CCC', cursor: 'pointer' }} />
-
-                            <div style={{ paddingTop: '1rem' }}>
-                                <h5 style={{ fontWeight: 'bold' }}>{property.title}</h5>
-                                <p style={{ color: '#555', marginBottom: '1rem' }}>
-                                    {property.description || 'Descripción no disponible'}
-                                </p>
-                                <Tag value={`$${property.price_shown}`} style={{ backgroundColor: '#060A74', color: '#FFF' }} />
+                            <div style={{ flex: '6', padding: '1rem', backgroundColor: '#D8E7FD', display: 'flex', flexDirection: 'column' }}>
+                                <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem', alignItems: 'center' }}>
+                                    <Tag
+                                        value={`Dirección #${property.property_id}`}
+                                        style={{
+                                            backgroundColor: '#3B82F6',
+                                            color: '#FFF',
+                                            borderRadius: '5px',
+                                            fontWeight: 'bold',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontSize: '0.6rem',
+                                            padding: '0.3rem 0.5rem',
+                                            minWidth: '10%'
+                                        }}
+                                    />
+                                    <Tag
+                                        value={`$${property.price_shown}`}
+                                        style={{
+                                            backgroundColor: '#3B82F6',
+                                            color: '#FFF',
+                                            borderRadius: '5px',
+                                            fontWeight: 'bold',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontSize: '0.6rem',
+                                            padding: '0.3rem 0.5rem',
+                                            minWidth: '5%'
+                                        }}
+                                    />
+                                </div>
+                                <img alt="Property" src={property.image?.url || "https://primefaces.org/cdn/primereact/images/usercard.png"} style={{ width: '100%', marginBottom: '20%', borderRadius: '5px' }} />
                             </div>
 
-                            <Button
-                                label="Ver más"
-                                icon="pi pi-angle-right"
-                                style={{
-                                    marginTop: '1rem',
-                                    width: '100%',
-                                    backgroundColor: '#060A74',
-                                    color: '#FFF',
-                                    borderRadius: '5px'
-                                }}
-                            />
+                            <div style={{ flex: '4', padding: '1rem', backgroundColor: '#F8F9FE', fontSize: '0.9rem', textAlign: 'center' }}>
+                                <h5 style={{ fontWeight: 'bold', margin: 0, fontSize: '1rem', textAlign: 'left' }}>{property.title}</h5>
+                                <p style={{ color: '#555', marginBottom: '1rem', fontSize: '0.85rem' }}>
+                                    {property.description || 'Descripción no disponible'}
+                                </p>
+                            </div>
                         </Card>
                     ))}
                 </div>
