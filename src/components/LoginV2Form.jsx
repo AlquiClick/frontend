@@ -11,27 +11,7 @@ const LoginV2Form = () => {
     const navigate = useNavigate();
 
     const onLoginUser = async (values) => {
-        const credentials = btoa(`${values.username}:${values.password}`);
-        const response = await fetch('http://127.0.0.1:5000/login', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Basic ${credentials}`,
-            },
-            body: JSON.stringify({})
-        });
-
-        if (!response.ok) {
-            console.log("Error en la solicitud");
-            return;
-        }
-
-        const data = await response.json();
-        localStorage.setItem('token', JSON.stringify(data.token));
-        localStorage.setItem('username', values.username);
-        localStorage.setItem('user_id', data.user_id);
-
-        navigate('/');
+        navigate('/busqueda');
     };
 
     const validationSchema = Yup.object().shape({
@@ -48,10 +28,7 @@ const LoginV2Form = () => {
         <div className="login-page-container">
             <div className="login-container">
                 <div className="blue-banner"></div>
-                {/* <div className="login-image-placeholder">
-                    <img src="your-image-url" alt="Placeholder" />
-                </div> */}
-                <h2 className="login-title">Welcome!</h2>
+                <h2 className="login-title">Bienvenido!</h2>
                 <div className="title-underline"></div>
                 <Formik
                     initialValues={{ password: '', username: '' }}
@@ -89,7 +66,7 @@ const LoginV2Form = () => {
                                 feedback={false}
                                 className="custom-password-input"
                             />
-                                {errors.password && touched.password && <div className="error-message">{errors.password}</div>}
+                            {errors.password && touched.password && <div className="error-message">{errors.password}</div>}
                             <Button
                                 label="Sign In"
                                 type="submit"

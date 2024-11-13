@@ -33,10 +33,10 @@ body {
 }
 
 .blue-banner {
-    background-color: #cfd8ff;
+    background-color: #D8E7FD;
     height: 30%;
     width: 100%;
-    position: relative;
+    position: absolute;
     margin-bottom: 20%;
     top: 0;
     left: 0;
@@ -60,17 +60,18 @@ body {
 }
 
 .login-title {
-    font-size: 24px;
-    color: #1d1d1d;
-    margin-bottom: 0.5rem;
+    font-size: 22px;
+    color: #494A50;
+    margin-bottom: 1%;
+    margin-top: 65%;
     text-transform: uppercase;
     font-weight: bold;
     text-align: left;
 }
 
 .title-underline {
-    width: 90%;
-    height: 2px;
+    width: 99%;
+    height: 1px;
     margin-bottom: 12%;
     background-color: #000;
 }
@@ -119,14 +120,18 @@ body {
 }
 
 .login-button {
-    padding: 0.75rem;
+    padding: 0.65rem;
+    height: 10%;
+    margin-top: 10%;
+    margin-bottom: 5%;
     background-color: #060A74;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
-    width: 40%;
+    font-size: 12px;
+    font-weight: bold;
+    width: 35%;
 }
 
 .login-button:hover {
@@ -141,8 +146,9 @@ body {
 }
 
 .login-links a {
-    color: #1d4ed8;
-    font-size: 14px;
+    color: #006FFD;
+    font-size: 10px;
+    font-weight: bold;
     text-decoration: none;
     margin-bottom: 0.5rem;
 }
