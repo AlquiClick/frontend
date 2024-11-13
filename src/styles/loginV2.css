@@ -21,7 +21,7 @@ body {
 .login-container {
     background-color: #ffffff;
     padding: 2rem;
-    padding-top: 120px; /* Espacio para el blue-banner */
+    padding-top: 120px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 90%;
@@ -29,17 +29,18 @@ body {
     text-align: left;
     position: relative;
     overflow: hidden;
-    z-index: 1; /* Asegura que el contenido esté sobre el blue-banner */
+    z-index: 1;
 }
 
 .blue-banner {
-    background-color: #cfd8ff; /* Mismo color que `login-image-placeholder` */
-    height: 30%; /* Ajusta según la cantidad que deseas cubrir */
+    background-color: #cfd8ff;
+    height: 30%;
     width: 100%;
-    position: absolute;
+    position: relative;
+    margin-bottom: 20%;
     top: 0;
     left: 0;
-    z-index: 0; /* Asegura que el blue-banner esté detrás del contenido */
+    z-index: 0;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -53,7 +54,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    margin-top: -40px; /* Posiciona el ícono en el centro del banner */
+    margin-top: -40px;
     position: relative;
     z-index: 1;
 }
@@ -70,8 +71,8 @@ body {
 .title-underline {
     width: 90%;
     height: 2px;
+    margin-bottom: 12%;
     background-color: #000;
-    margin: 0.5rem 0 1.5rem 0;
 }
 
 .input-group input,
@@ -119,14 +120,13 @@ body {
 
 .login-button {
     padding: 0.75rem;
-    background-color: #333;
+    background-color: #060A74;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    margin-top: 1rem;
-    width: 100%;
+    width: 40%;
 }
 
 .login-button:hover {

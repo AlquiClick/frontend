@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { InputText } from "primereact/inputtext";
 import { Password } from "primereact/password";
 import { Button } from "primereact/button";
+
 import '../styles/loginV2.css';
 
-const LoginForm = () => {
+const LoginV2Form = () => {
     const navigate = useNavigate();
 
     const onLoginUser = async (values) => {
@@ -47,10 +48,10 @@ const LoginForm = () => {
         <div className="login-page-container">
             <div className="login-container">
                 <div className="blue-banner"></div>
-                <div className="login-image-placeholder">
+                {/* <div className="login-image-placeholder">
                     <img src="your-image-url" alt="Placeholder" />
-                </div>
-                <h2 className="login-title">BIENVENIDO!</h2>
+                </div> */}
+                <h2 className="login-title">Welcome!</h2>
                 <div className="title-underline"></div>
                 <Formik
                     initialValues={{ password: '', username: '' }}
@@ -66,7 +67,7 @@ const LoginForm = () => {
                         handleSubmit,
                         isValid
                     }) => (
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit} >
                             <div className="input-group">
                                 <InputText
                                     type="text"
@@ -85,7 +86,6 @@ const LoginForm = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.password}
-                                toggleMask
                                 feedback={false}
                                 className="custom-password-input"
                             />
@@ -108,4 +108,4 @@ const LoginForm = () => {
     );
 };
 
-export default LoginForm;
+export default LoginV2Form;
