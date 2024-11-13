@@ -8,13 +8,14 @@ import RegisterForm from './components/users/RegisterForm';
 import HomeContainer from './components/home/HomeContainer';
 import ProfileContainer from './components/profile/ProfileContainer';
 import PropertyContainer from './components/properties/PropertyContainer';
+import PropertyEdit from './components/properties/PropertyEdit';
+import PhotoEdit from './components/properties/PhotoEdit';
 import './styles/login.css';
 
 function App() {
   return (
     <Router>
       <div className="app-container">
-        <HeaderContainer />
         <Routes>
           <Route path="/" element={<HomeContainer />} />
           <Route path="/login" element={<LoginForm />} />
@@ -23,6 +24,8 @@ function App() {
           <Route path="/property" element={<PropertyContainer />} />
           <Route path="/loginv2" element={<LoginV2Form />} />
           <Route path="/busqueda" element={<SearchForm />} />
+          <Route path="/property-edit" element={<PropertyEdit />} />
+          <Route path="/edit-photos" element={<PhotoEdit />} />
         </Routes>
       </div>
     </Router>

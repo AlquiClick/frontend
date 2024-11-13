@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import { Tag } from 'primereact/tag';
+import { useNavigate } from "react-router-dom";
 import '../styles/search.css';
 
 const SearchContainer = () => {
+    const navigate = useNavigate();
     const [properties, setProperties] = useState([]);
     const [search, setSearch] = useState('');
 
@@ -25,6 +27,10 @@ const SearchContainer = () => {
         } else {
             console.error("Error fetching properties:", response.status)
         }
+    };
+
+    const test = () => {
+        navigate('/property-edit');
     };
 
     useEffect(() => {
@@ -95,6 +101,7 @@ const SearchContainer = () => {
                                 flexDirection: 'column',
                                 height: 'auto'
                             }}
+                            onClick={() => test()}
                         >
                             <div style={{ flex: '6', padding: '1rem', backgroundColor: '#D8E7FD', display: 'flex', flexDirection: 'column' }}>
                                 <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem', alignItems: 'center' }}>
