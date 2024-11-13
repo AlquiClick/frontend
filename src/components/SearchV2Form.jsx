@@ -42,11 +42,11 @@ const SearchContainer = () => {
     );
 
     return (
-        <div style={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f0f0f0', padding: '2rem' }}>
+        <div style={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#f0f0f0' }}>
             <div style={{
-                width: '90%',
-                maxWidth: '600px',
-                maxHeight: '85vh',
+                width: '100%',
+                maxWidth: '100%',
+                maxHeight: '100%',
                 backgroundColor: '#ffffff',
                 borderRadius: '10px',
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
